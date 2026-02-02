@@ -1,14 +1,50 @@
-import "./Header.css";
+import { useNavigate } from "react-router-dom";
+import { UserAuth } from "../context/AuthContext";
 
-const Header: React.FC = () => {
+const Header = () => {
+  const { signOut } = UserAuth();
+  const navigate = useNavigate();
+
+  const handleSignOut = async () => {
+    try {
+      await signOut();
+      navigate("/");
+    } catch (error) {
+      console.log("Error signing out:", error);
+    }
+  };
+
   return (
-    <header className="header">
-      <div className="logo">Maison Amie</div>
-      <nav className="nav">
-        <a href="#">Home</a>
-        <a href="#">Members</a>
-        <a href="#">About</a>
-        <a href="#">Sign In</a>
+    <header
+      style={{
+        backgroundColor: "#d1898f",
+        padding: "15px 40px",
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center",
+        color: "white",
+        boxShadow: "0 4px 10px rgba(0,0,0,0.1)",
+      }}
+    >
+      <h1 style={{ fontSize: "1.5rem", fontWeight: "bold" }}>
+        MaisonAmie ✨
+      </h1>
+
+      <nav style={{ display: "flex", gap: "20px" }}>
+        <button
+          onClick={handleSignOut}
+          style={{
+            backgroundColor: "#fad3d7",
+            color: "#d1898f",
+            padding: "8px 16px",
+            borderRadius: "12px",
+            border: "none",
+            fontWeight: "bold",
+            cursor: "pointer",
+          }}
+        >
+          Sign Out
+        </button>
       </nav>
     </header>
   );
