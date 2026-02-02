@@ -1,22 +1,13 @@
-/* import React from "react"; */
+import { Routes, Route } from "react-router-dom";
 import Signin from "./components/Signin";
-import Header from "./components/Header";
-import "./App.css";
-
-/* import { UserAuth } from "./context/AuthContext"; */
+import Dashboard from "./routes/Dashboard";
 
 function App() {
-  /* const { user } = UserAuth(); */
-  // console.log(user);
-
   return (
-    <>
-      <Header />
-
-      <div className="container">
-        <Signin />
-      </div>
-    </>
+    <Routes>
+      <Route path="/" element={<Signin />} />
+      <Route path="/dashboard" element={<Dashboard />} />
+    </Routes>
   );
 }
 
