@@ -5,6 +5,20 @@
   text-align: center;
 }
 
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #ffd6dc;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 60px);
+}
+
+
 .logo {
   height: 6em;
   padding: 1.5em;
