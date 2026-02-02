@@ -5,106 +5,130 @@ import { UserAuth } from "../context/AuthContext";
 const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState<string |null>(null);
+  const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
-  const {session ,signUpNewUser } = UserAuth();
-
+  const { signUpNewUser } = UserAuth();
   const navigate = useNavigate();
- console.log("Current session:", session);
- console.log(email, password    );
-  const handleSignUp = async (e:React.FormEvent<HTMLFormElement>) => {
+
+  const handleSignUp = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
     setError(null);
 
     try {
-      const result = await signUpNewUser(email, password); // Call context function
+      const result = await signUpNewUser(email, password);
 
       if (result.success) {
-        navigate("/Dashboard"); // Navigate to dashboard on success
+        navigate("/Dashboard");
       } else {
-        setError(result.error?.message || result.error);// Show error message on failure
+        setError(result.error?.message || result.error);
       }
-    } catch (err) {
-      setError("An unexpected error occurred."); // Catch unexpected errors
+    } catch {
+      setError("An unexpected error occurred.");
     } finally {
-      setLoading(false); // End loading state
+      setLoading(false);
     }
   };
 
   return (
-     <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
- 
-
-   
-    {/* Form */}
-    <form onSubmit={handleSignUp} className="max-w-md m-auto pt-24">
-       {/* Title */}
-    <h2 className="text-3xl font-bold text-gray-800 text-center">
-      Sign up today!
-    </h2>
-
-    {/* Subtitle */}
-    <p className="text-center text-gray-500 mt-2">
-      Already have an account?{" "}
-      <Link
-        to="/"
-        className="text-indigo-600 font-semibold hover:underline"
+    <div
+      className="min-h-screen flex items-center justify-center px-4"
+      style={{ backgroundColor: "#fad3d7" }} // Light Pink Background
+    >
+      {/* Card */}
+      <div
+        className="w-full max-w-md rounded-3xl shadow-xl p-10"
+        style={{
+          backgroundColor: "#ffffff",
+          border: "2px solid #d1898f",
+        }}
       >
-        Sign in
-      </Link>
-    </p>
+        {/* Title */}
+        <h2
+          className="text-3xl font-extrabold text-center"
+          style={{ color: "#d1898f" }}
+        >
+          Sign up today! 💖
+        </h2>
 
-
-      {/* Email */}
-      <div>
-        <input
-          onChange={(e) => setEmail(e.target.value)}
-          className="w-80 mx-auto block px-4 py-3 border rounded-xl 
-          border-gray-300 focus:outline-none focus:ring-2 
-          focus:ring-indigo-500 mt-6"
-          type="email"
-          name="email"
-          id="email"
-          placeholder="Email"
-        />
-      </div>
-
-      {/* Password */}
-      <div>
-        <input
-          onChange={(e) => setPassword(e.target.value)}
-          className="w-80 bg-indigo-600 mx-auto block px-4 py-3 border rounded-xl 
-          border-gray-300 focus:outline-none focus:ring-2 
-          focus:ring-indigo-500 mt-6 p-4"
-          type="password"
-          name="password"
-          id="password"
-          placeholder="Password"
-        />
-      </div>
-
-      {/* Button */}
-      <button
-        type="submit"
-        disabled={loading}
-        className="mx-auto w-80 bg-indigo-600 text-white py-3 rounded-xl 
-        font-semibold hover:bg-indigo-700 transition duration-300
-        disabled:opacity-50"
-      >
-        {loading ? "Signing up..." : "Sign Up"}
-      </button>
-
-      {/* Error */}
-      {error && (
-        <p className="text-red-600 text-center text-sm pt-2">
-          {error}
+        {/* Subtitle */}
+        <p
+          className="text-center mt-2 text-sm"
+          style={{ color: "#000000" }}
+        >
+          Already have an account?{" "}
+          <Link
+            to="/"
+            className="font-semibold hover:underline"
+            style={{ color: "#d1898f" }}
+          >
+            Sign in
+          </Link>
         </p>
-      )}
-    </form>
-  </div>
 
+        {/* Form */}
+        <form onSubmit={handleSignUp} className="mt-8 space-y-6">
+          {/* Email */}
+          <div>
+            <label
+              className="block text-sm font-medium mb-2"
+              style={{ color: "#000000" }}
+            >
+              Email Address
+            </label>
+
+            <input
+              onChange={(e) => setEmail(e.target.value)}
+              type="email"
+              placeholder="Enter your email"
+              className="w-full px-4 py-3 rounded-xl focus:outline-none focus:ring-2"
+              style={{
+                border: "1px solid #d1898f",
+              }}
+            />
+          </div>
+
+          {/* Password */}
+          <div>
+            <label
+              className="block text-sm font-medium mb-2"
+              style={{ color: "#000000" }}
+            >
+              Password
+            </label>
+
+            <input
+              onChange={(e) => setPassword(e.target.value)}
+              type="password"
+              placeholder="Create a password"
+              className="w-full px-4 py-3 rounded-xl focus:outline-none focus:ring-2"
+              style={{
+                border: "1px solid #d1898f",
+              }}
+            />
+          </div>
+
+          {/* Button */}
+          <button
+            type="submit"
+            disabled={loading}
+            className="w-full py-3 rounded-xl font-semibold shadow-lg transition duration-300 disabled:opacity-50"
+            style={{
+              backgroundColor: "#d1898f",
+              color: "#ffffff",
+            }}
+          >
+            {loading ? "Signing up..." : "Sign Up"}
+          </button>
+
+          {/* Error */}
+          {error && (
+            <p className="text-red-600 text-center text-sm">{error}</p>
+          )}
+        </form>
+      </div>
+    </div>
   );
 };
 
