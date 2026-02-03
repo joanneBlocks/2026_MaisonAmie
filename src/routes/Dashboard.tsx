@@ -211,7 +211,7 @@ const Dashboard = () => {
                 border: "1px solid #d1898f",
               }}
             >
-              Edit Profile
+              ROSE
             </button>
 
             {/* ✅ TODO LIST */}

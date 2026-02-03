@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { UserAuth } from "../context/AuthContext";
+import Header from "../components/Header";
 
 const Signup = () => {
   const [email, setEmail] = useState("");
@@ -32,103 +33,108 @@ const Signup = () => {
   };
 
   return (
-    <div
-      className="min-h-screen flex items-center justify-center px-4"
-      style={{ backgroundColor: "#fad3d7" }} // Light Pink Background
-    >
-      {/* Card */}
-      <div
-        className="w-full max-w-md rounded-3xl shadow-xl p-10"
-        style={{
-          backgroundColor: "#ffffff",
-          border: "2px solid #d1898f",
-        }}
-      >
-        {/* Title */}
-        <h2
-          className="text-3xl font-extrabold text-center"
-          style={{ color: "#d1898f" }}
-        >
-          Sign up today!
-        </h2>
+    <>
+      {/* Header */}
+      <Header showSignOut={false} />
 
-        {/* Subtitle */}
-        <p
-          className="text-center mt-2 text-sm"
-          style={{ color: "#000000" }}
+
+      {/* Page Background */}
+      <div
+        className="min-h-screen flex items-center justify-center px-4"
+        style={{ backgroundColor: "#fad3d7" }}
+      >
+        {/* Card */}
+        <div
+          className="w-full max-w-md rounded-3xl shadow-xl p-10"
+          style={{
+            backgroundColor: "#ffffff",
+            border: "2px solid #d1898f",
+          }}
         >
-          Already have an account?{" "}
-          <Link
-            to="/"
-            className="font-semibold hover:underline"
+          {/* Title */}
+          <h2
+            className="text-3xl font-extrabold text-center"
             style={{ color: "#d1898f" }}
           >
-            Sign in
-          </Link>
-        </p>
+            Sign up today!
+          </h2>
 
-        {/* Form */}
-        <form onSubmit={handleSignUp} className="mt-8 space-y-6">
-          {/* Email */}
-          <div>
-            <label
-              className="block text-sm font-medium mb-2"
-              style={{ color: "#000000" }}
-            >
-              Email Address
-            </label>
-
-            <input
-              onChange={(e) => setEmail(e.target.value)}
-              type="email"
-              placeholder="Enter your email"
-              className="w-full px-4 py-3 rounded-xl focus:outline-none focus:ring-2"
-              style={{
-                border: "1px solid #d1898f",
-              }}
-            />
-          </div>
-
-          {/* Password */}
-          <div>
-            <label
-              className="block text-sm font-medium mb-2"
-              style={{ color: "#000000" }}
-            >
-              Password
-            </label>
-
-            <input
-              onChange={(e) => setPassword(e.target.value)}
-              type="password"
-              placeholder="Create a password"
-              className="w-full px-4 py-3 rounded-xl focus:outline-none focus:ring-2"
-              style={{
-                border: "1px solid #d1898f",
-              }}
-            />
-          </div>
-
-          {/* Button */}
-          <button
-            type="submit"
-            disabled={loading}
-            className="w-full py-3 rounded-xl font-semibold shadow-lg transition duration-300 disabled:opacity-50"
-            style={{
-              backgroundColor: "#d1898f",
-              color: "#ffffff",
-            }}
+          {/* Subtitle */}
+          <p
+            className="text-center mt-2 text-sm"
+            style={{ color: "#000000" }}
           >
-            {loading ? "Signing up..." : "Sign Up"}
-          </button>
+            Already have an account?{" "}
+            <Link
+              to="/"
+              className="font-semibold hover:underline"
+              style={{ color: "#d1898f" }}
+            >
+              Sign in
+            </Link>
+          </p>
 
-          {/* Error */}
-          {error && (
-            <p className="text-red-600 text-center text-sm">{error}</p>
-          )}
-        </form>
+          {/* Form */}
+          <form onSubmit={handleSignUp} className="mt-8 space-y-6">
+            {/* Email */}
+            <div>
+              <label
+                className="block text-sm font-medium mb-2"
+                style={{ color: "#000000" }}
+              >
+                Email Address
+              </label>
+
+              <input
+                type="email"
+                placeholder="Enter your email"
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                className="w-full px-4 py-3 rounded-xl focus:outline-none focus:ring-2"
+                style={{ border: "1px solid #d1898f" }}
+              />
+            </div>
+
+            {/* Password */}
+            <div>
+              <label
+                className="block text-sm font-medium mb-2"
+                style={{ color: "#000000" }}
+              >
+                Password
+              </label>
+
+              <input
+                type="password"
+                placeholder="Create a password"
+                onChange={(e) => setPassword(e.target.value)}
+                required
+                className="w-full px-4 py-3 rounded-xl focus:outline-none focus:ring-2"
+                style={{ border: "1px solid #d1898f" }}
+              />
+            </div>
+
+            {/* Button */}
+            <button
+              type="submit"
+              disabled={loading}
+              className="w-full py-3 rounded-xl font-semibold shadow-lg transition duration-300 disabled:opacity-50"
+              style={{
+                backgroundColor: "#d1898f",
+                color: "#ffffff",
+              }}
+            >
+              {loading ? "Signing up..." : "Sign Up"}
+            </button>
+
+            {/* Error */}
+            {error && (
+              <p className="text-red-600 text-center text-sm">{error}</p>
+            )}
+          </form>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
