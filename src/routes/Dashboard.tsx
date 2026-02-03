@@ -215,7 +215,7 @@ const Dashboard = () => {
             </button>
 
             {/* ✅ TODO LIST */}
-            <div className="mt-8">
+            <div className="-ml-4">
               <TodoList />
             </div>
 
@@ -248,7 +248,7 @@ const Dashboard = () => {
 
             {/* Global Calendar */}
             <div className="rounded-3xl shadow-lg p-6 bg-white border-2 border-pink-300">
-              <h3 className="font-bold text-black mb-4">Global Activities 🌐</h3>
+              <h3 className="font-bold text-black mb-4">Global Activities</h3>
               <ul>
                 {globalActivities.map((act) => (
                   <li key={act.id} className="flex justify-between items-center mb-2 p-2 bg-gray-50 rounded shadow">
@@ -269,7 +269,7 @@ const Dashboard = () => {
 
             {/* Personal Calendar */}
             <div className="rounded-3xl shadow-lg p-6 bg-white border-2 border-pink-300">
-              <h3 className="font-bold text-black mb-4">My Personal Calendar 📅</h3>
+              <h3 className="font-bold text-black mb-4">My Personal Calendar</h3>
               <div className="flex gap-2 mb-4 flex-wrap">
                 <input type="text" placeholder="Activity title" value={activityTitle} onChange={(e) => setActivityTitle(e.target.value)} className="border rounded px-2 py-1 flex-1" />
                 <DatePicker selected={selectedDate} onChange={(date: Date | null) => setSelectedDate(date)} className="border rounded px-2 py-1" />
