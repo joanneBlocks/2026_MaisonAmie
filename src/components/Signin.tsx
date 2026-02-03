@@ -48,7 +48,7 @@ const Signin = () => {
             className="text-3xl font-extrabold text-center"
             style={{ color: "#d1898f" }}
           >
-            Back, Beautiful.
+            Step in and thrive.
           </h2>
 
           <p className="text-center mt-2 text-sm" style={{ color: "#000000" }}>
