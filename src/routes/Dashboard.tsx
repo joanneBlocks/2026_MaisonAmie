@@ -184,7 +184,7 @@ const Dashboard = () => {
   return (
     <>
       <Header />
-      <div className="min-h-screen px-6 py-10" style={{ backgroundColor: "#fad3d7" }}>
+      <div className="flex-grow overflow-auto px-6 py-10" style={{ backgroundColor: "#fad3d7" }}>
         <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
           
           {/* Profile Sidebar */}
@@ -236,9 +236,27 @@ const Dashboard = () => {
               <h3 className="font-bold text-black mb-2">Create New Post</h3>
               <input type="text" placeholder="Title" value={newPostTitle} onChange={(e) => setNewPostTitle(e.target.value)} className="border border-[#d1898f] rounded px-2 py-1 w-full mb-2" />
               <textarea placeholder="What's on your mind?" value={newPostContent} onChange={(e) => setNewPostContent(e.target.value)} className="border border-[#d1898f] rounded px-2 py-1 w-full mb-2" />
-              <input type="file" accept="image/*" onChange={handleImageUpload} className="mb-2" />
-              {newPostImage && <img src={newPostImage} alt="Preview" className="w-32 h-32 object-cover mb-2 rounded" />}
-              <button onClick={addPost} className="bg-[#d1898f] text-white px-4 py-2 rounded">Post</button>              
+              <div className="mb-2 flex items-center gap-2">
+                <label
+                  htmlFor="postImage"
+                  className="cursor-pointer bg-[#d1898f] text-white px-4 py-2 rounded inline-block"
+                >
+                  Upload Image
+                </label>
+                <input
+                  type="file"
+                  id="postImage"
+                  accept="image/*"
+                  onChange={handleImageUpload}
+                  className="hidden"
+                  />
+                {newPostImage && (
+                  <img src={newPostImage} alt="Preview" className="w-32 h-32 object-cover mt-2 rounded" />
+                )}
+                         
+                <button onClick={addPost} className="bg-[#d1898f] text-white px-4 py-2 rounded">Post</button>              
+
+              </div> 
             </div>
 
             {/* Personal Posts */}

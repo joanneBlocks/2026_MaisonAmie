@@ -3,12 +3,12 @@ import { supabase } from "../supabaseClient";
 import type { ReactNode } from "react";
 import type { Session } from "@supabase/supabase-js";
 
-/* Props */
+// Props
 type AuthProviderProps = {
   children: ReactNode;
 };
 
-/* Context Type */
+// Context Type
 type AuthContextType = {
   session: Session | null;
   signUpNewUser: (email: string, password: string) => Promise<any>;
@@ -16,14 +16,14 @@ type AuthContextType = {
   signOut: () => Promise<void>;
 };
 
-/* Create Context */
+// Create Context
 export const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-/* Provider Component */
+// Provider Component
 export const AuthContextProvider = ({ children }: AuthProviderProps) => {
   const [session, setSession] = useState<Session | null>(null);
 
-  // ---------------- Sign Up ----------------
+  // Sign Up
   const signUpNewUser = async (email: string, password: string) => {
     const { data, error } = await supabase.auth.signUp({
       email: email.toLowerCase(),
@@ -38,7 +38,7 @@ export const AuthContextProvider = ({ children }: AuthProviderProps) => {
     return { success: true, data };
   };
 
-  // ---------------- Sign In ----------------
+  // Sign In
   const signInUser = async (email: string, password: string) => {
     try {
       const { data, error } = await supabase.auth.signInWithPassword({
@@ -61,7 +61,7 @@ export const AuthContextProvider = ({ children }: AuthProviderProps) => {
     }
   };
 
-  // ---------------- Session Listener ----------------
+  // Session Listener
   useEffect(() => {
     // Get initial session
     supabase.auth.getSession().then(({ data }) => {
@@ -80,13 +80,13 @@ export const AuthContextProvider = ({ children }: AuthProviderProps) => {
     };
   }, []);
 
-  // ---------------- Sign Out ----------------
+  // Sign Out
   const signOut = async () => {
     try {
       const { error } = await supabase.auth.signOut();
       if (error) throw error;
 
-      // Clear session immediately for UI to react
+     
       setSession(null);
 
       console.log("User signed out successfully");
@@ -95,7 +95,7 @@ export const AuthContextProvider = ({ children }: AuthProviderProps) => {
     }
   };
 
-  // ---------------- Provider ----------------
+  // Provider
   return (
     <AuthContext.Provider
       value={{ session, signUpNewUser, signInUser, signOut }}
@@ -105,7 +105,7 @@ export const AuthContextProvider = ({ children }: AuthProviderProps) => {
   );
 };
 
-/* Safe Hook */
+// Safe Hook
 export const UserAuth = () => {
   const context = useContext(AuthContext);
   if (!context) throw new Error("UserAuth must be used inside AuthContextProvider");
