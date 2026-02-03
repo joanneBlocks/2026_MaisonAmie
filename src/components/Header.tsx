@@ -27,7 +27,7 @@ const Header = () => {
       }}
     >
       <h1 style={{ fontSize: "1.5rem", fontWeight: "bold" }}>
-        MaisonAmie ✨
+        Maison Amie
       </h1>
 
       <nav style={{ display: "flex", gap: "20px" }}>
