@@ -105,6 +105,9 @@ const Dashboard = () => {
     }
   }, [session]);
 
+
+
+
   // ----------------- Personal Calendar Functions -----------------
   const saveActivity = () => {
     if (!activityTitle || !selectedDate || !session) return;
@@ -137,7 +140,10 @@ const Dashboard = () => {
     setEditId(act.id);
     setActivityTitle(act.title);
     setSelectedDate(act.date);
-  };
+  }; 
+
+
+
 
   // ----------------- Global Calendar Functions -----------------
   const joinGlobalActivity = (act: Activity) => {
