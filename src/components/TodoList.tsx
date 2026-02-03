@@ -43,7 +43,7 @@ const TodoList: React.FC = () => {
           placeholder="Enter a task."
           value={input}
           onChange={(e) => setInput(e.target.value)}
-          className="flex-1 border border-[#000000] rounded px-2 py-1 focus:outline-none focus:ring-2 focus:ring-[#fad3d7]"
+          className="flex-1 border border-[#d1898f] rounded px-2 py-1 focus:outline-none focus:ring-2 focus:ring-[#fad3d7]"
         />
         <button
           onClick={addTask}
@@ -70,15 +70,15 @@ const TodoList: React.FC = () => {
             <div className="flex gap-1">
               <button
                 onClick={() => toggleTask(index)}
-                className="bg-white px-2 rounded border border-black"
+                className="px-2 rounded text-2xl no-border text-green-500"
               >
                 ✔
               </button>
               <button
                 onClick={() => deleteTask(index)}
-                className="bg-white px-2 rounded border border-black"
+                className="px-2 rounded no-border"
               >
-                ✖
+                ❌
               </button>
             </div>
           </li>

@@ -38,7 +38,7 @@ const Dashboard = () => {
       title: "The Glow-Up Your Social Life Needed",
       content:
         "More laughter. Better plans. Less “we should hang out sometime.” Just meaningful moments and women who show up.",
-      image: "src/assets/women002.png",
+      image: "src/assets/women004.png",
       timestamp: new Date(new Date().setDate(new Date().getDate() - 2)),
     },
     {
@@ -232,19 +232,19 @@ const Dashboard = () => {
           <div className="md:col-span-2 space-y-6">
 
             {/* New Post Form */}
-            <div className="rounded-3xl shadow-lg p-6 bg-white border-2 border-pink-300">
+            <div className="rounded-3xl shadow-lg p-6 bg-white border-2 border-[#d1898f]">
               <h3 className="font-bold text-black mb-2">Create New Post</h3>
-              <input type="text" placeholder="Title" value={newPostTitle} onChange={(e) => setNewPostTitle(e.target.value)} className="border rounded px-2 py-1 w-full mb-2" />
-              <textarea placeholder="What's on your mind?" value={newPostContent} onChange={(e) => setNewPostContent(e.target.value)} className="border rounded px-2 py-1 w-full mb-2" />
+              <input type="text" placeholder="Title" value={newPostTitle} onChange={(e) => setNewPostTitle(e.target.value)} className="border border-[#d1898f] rounded px-2 py-1 w-full mb-2" />
+              <textarea placeholder="What's on your mind?" value={newPostContent} onChange={(e) => setNewPostContent(e.target.value)} className="border border-[#d1898f] rounded px-2 py-1 w-full mb-2" />
               <input type="file" accept="image/*" onChange={handleImageUpload} className="mb-2" />
               {newPostImage && <img src={newPostImage} alt="Preview" className="w-32 h-32 object-cover mb-2 rounded" />}
-              <button onClick={addPost} className="bg-pink-300 text-white px-4 py-2 rounded">Post</button>              
+              <button onClick={addPost} className="bg-[#d1898f] text-white px-4 py-2 rounded">Post</button>              
             </div>
 
             {/* Personal Posts */}
             <div>
               {posts.map((post) => (
-                <div key={post.id} className="rounded-3xl shadow-lg p-6 mb-4 bg-white border-2 border-pink-300">
+                <div key={post.id} className="rounded-3xl shadow-lg p-6 mb-4 bg-white border-2 border-[#d1898f]">
                   <h3 className="font-bold text-black">{post.title}</h3>
                   <p className="text-xs text-gray-500">{post.timestamp.toLocaleDateString()}</p>
                   {post.image && <img src={post.image} alt="Post Image" className="w-full max-h-64 object-cover rounded my-2" />}
@@ -261,7 +261,7 @@ const Dashboard = () => {
                   <li key={act.id} className="flex justify-between items-center mb-2 p-2 bg-gray-50 rounded shadow">
                     <span>{act.title} — {act.date.toLocaleDateString()} {act.creator ? `(by ${act.creator})` : ""}</span>
                     <div className="flex gap-2">
-                      <button onClick={() => joinGlobalActivity(act)} className="bg-pink-300 text-white px-3 py-1 rounded">Join</button>
+                      <button onClick={() => joinGlobalActivity(act)} className="bg-[#d1898f] text-white px-3 py-1 rounded">Join</button>
                       {session?.user?.email === act.creator && (
                         <>
                           <button onClick={() => editGlobalActivity(act)} className="text-blue-500 font-bold">✏️</button>
@@ -280,7 +280,7 @@ const Dashboard = () => {
               <div className="flex gap-2 mb-4 flex-wrap">
                 <input type="text" placeholder="Activity title" value={activityTitle} onChange={(e) => setActivityTitle(e.target.value)} className="border rounded px-2 py-1 flex-1" />
                 <DatePicker selected={selectedDate} onChange={(date: Date | null) => setSelectedDate(date)} className="border rounded px-2 py-1" />
-                <button onClick={editId !== null ? updateGlobalActivity : saveActivity} className="bg-pink-300 text-white px-4 py-1 rounded">{editId !== null ? "Update" : "Add"}</button>
+                <button onClick={editId !== null ? updateGlobalActivity : saveActivity} className="bg-[#d1898f] text-white px-4 py-1 rounded">{editId !== null ? "Update" : "Add"}</button>
               </div>
               <ul>
                 {personalActivities.map((act) => (
