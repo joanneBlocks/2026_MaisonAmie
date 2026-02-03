@@ -3,6 +3,7 @@ import { UserAuth } from "../context/AuthContext";
 import Header from "../components/Header";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import TodoList from "../components/TodoList";
 
 interface Activity {
   id: number;
@@ -212,6 +213,12 @@ const Dashboard = () => {
             >
               Edit Profile
             </button>
+
+            {/* ✅ TODO LIST */}
+            <div className="mt-8">
+              <TodoList />
+            </div>
+
           </div>
 
           {/* Feed + Calendars */}

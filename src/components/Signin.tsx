@@ -48,7 +48,7 @@ const Signin = () => {
           className="text-3xl font-extrabold text-center"
           style={{ color: "#d1898f" }} // Dark Pink Title
         >
-          Welcome Back 💖
+          Welcome Back
         </h2>
 
         {/* Subtitle */}

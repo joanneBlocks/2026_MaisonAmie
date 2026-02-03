@@ -49,7 +49,7 @@ const Signup = () => {
           className="text-3xl font-extrabold text-center"
           style={{ color: "#d1898f" }}
         >
-          Sign up today! 💖
+          Sign up today!
         </h2>
 
         {/* Subtitle */}
