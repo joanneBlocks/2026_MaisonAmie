@@ -34,7 +34,7 @@ const TodoList: React.FC = () => {
   return (
     <div className="bg-[#ffffff] p-6 w-80 rounded-xl mx-auto mt-10">
       <h2 className="text-xl font-bold mb-4 text-[#000000]">
-        My To-Do List
+        Win List
       </h2>
 
       <div className="flex gap-2 mb-4">

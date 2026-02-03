@@ -37,7 +37,7 @@ const Signin = () => {
       <Header showSignOut={false} />
 
       <div
-        className="min-h-screen flex items-center justify-center px-4"
+        className="min-h-screen flex items-start justify-center px-4 pt-24"
         style={{ backgroundColor: "#fad3d7" }}
       >
         <div
@@ -48,11 +48,11 @@ const Signin = () => {
             className="text-3xl font-extrabold text-center"
             style={{ color: "#d1898f" }}
           >
-            Welcome Back
+            Back, Beautiful.
           </h2>
 
           <p className="text-center mt-2 text-sm" style={{ color: "#000000" }}>
-            Sign in to continue
+            We saved your seat.
           </p>
 
           <form onSubmit={handleSignIn} className="mt-8 space-y-6">
@@ -62,7 +62,7 @@ const Signin = () => {
               </label>
               <input
                 type="email"
-                placeholder="Enter your email"
+                placeholder="Enter your email."
                 required
                 onChange={(e) => setEmail(e.target.value)}
                 className="w-full px-4 py-3 rounded-xl focus:outline-none focus:ring-2"
@@ -76,7 +76,7 @@ const Signin = () => {
               </label>
               <input
                 type="password"
-                placeholder="Enter your password"
+                placeholder="Enter your password."
                 required
                 onChange={(e) => setPassword(e.target.value)}
                 className="w-full px-4 py-3 rounded-xl focus:outline-none focus:ring-2"

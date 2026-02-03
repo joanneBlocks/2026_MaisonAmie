@@ -40,7 +40,7 @@ const Signup = () => {
 
       {/* Page Background */}
       <div
-        className="min-h-screen flex items-center justify-center px-4"
+        className="min-h-screen flex items-start justify-center px-4 pt-24"
         style={{ backgroundColor: "#fad3d7" }}
       >
         {/* Card */}
@@ -56,7 +56,7 @@ const Signup = () => {
             className="text-3xl font-extrabold text-center"
             style={{ color: "#d1898f" }}
           >
-            Sign up today!
+            Elevate Your World
           </h2>
 
           {/* Subtitle */}

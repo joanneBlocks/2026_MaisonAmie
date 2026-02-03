@@ -28,19 +28,26 @@ const Dashboard = () => {
   const [posts, setPosts] = useState<Post[]>([
     {
       id: 1,
+      title: "Yes, We Did!",
+      content: "Wrapped the Power, Sales & Confidence Workshop and feeling like a magnetic, confident, unstoppable force. Confidence isn’t given—it’s claimed. Sales aren’t luck—they’re strategy + energy. Let’s shine, ladies! #GlowUp #BossBabeEnergy #ConfidenceUnlocked #WomenWhoWin",
+    image: "src/assets/women003.png",
+    timestamp: new Date(),
+    },
+    {
+      id: 2,
       title: "The Glow-Up Your Social Life Needed",
       content:
         "More laughter. Better plans. Less “we should hang out sometime.” Just meaningful moments and women who show up.",
       image: "src/assets/women002.png",
-      timestamp: new Date(),
+      timestamp: new Date(new Date().setDate(new Date().getDate() - 2)),
     },
     {
-      id: 2,
+      id: 3,
       title: "You Don’t Have to Do Life Alone",
       content:
         "Doing life alone is overrated. We’re here for shared wins, real connections, and women who understand the assignment.",
       image: "src/assets/women001.png",
-      timestamp: new Date(new Date().setDate(new Date().getDate() - 1)),
+      timestamp: new Date(new Date().setDate(new Date().getDate() - 5)),
     },
   ]);
 
@@ -186,7 +193,7 @@ const Dashboard = () => {
               <img src="src/assets/member001.png" alt="👩🏻" className="w-full h-full object-cover" />
             </div>
             <h2 className="mt-4 font-bold text-lg text-black">{session?.user?.email || "Guest"}</h2>
-            <p className="text-sm text-gray-500 mt-2">Your space unlocked.</p>
+            <p className="text-sm text-gray-500 mt-2">Glow Hard or Go Home</p>
 
             {/* Stats */}
             <div className="flex justify-around mt-6">
@@ -211,7 +218,7 @@ const Dashboard = () => {
                 border: "1px solid #d1898f",
               }}
             >
-              ROSE
+              PLATINUM
             </button>
 
             {/* ✅ TODO LIST */}
