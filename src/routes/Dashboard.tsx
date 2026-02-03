@@ -239,7 +239,7 @@ const Dashboard = () => {
             </div>
 
             {/* Personal Calendar */}
-            <div className="rounded-3xl shadow-lg p-6 bg-white border-2 border-pink-300">
+            <div className="rounded-3xl shadow-lg p-6 bg-white border-2 border-[#d1898f]">
               <h3 className="font-bold text-black mb-4">My Personal Calendar</h3>
               <div className="flex gap-2 mb-4 flex-wrap">
                 <input
@@ -276,7 +276,7 @@ const Dashboard = () => {
             </div>
 
             {/* Global Calendar */}
-            <div className="rounded-3xl shadow-lg p-6 bg-white border-2 border-pink-300">
+            <div className="rounded-3xl shadow-lg p-6 bg-white border-2 border-[#d1898f]">
               <h3 className="font-bold text-black mb-4">Global Activities</h3>
               <ul>
                 {globalActivities.map((act) => (
