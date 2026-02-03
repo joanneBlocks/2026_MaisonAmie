@@ -17,7 +17,7 @@ const Footer: React.FC = () => {
         fontSize: "0.9rem",
       }}
     >
-      © 2026 ERICA CADSAWAN ● JOANNE COSTO ● ANGEL MONTANO | All Good Vibes Reserved
+      © 2026 CAI CADSAWAN ● JOANNE COSTO ● ANGEL MONTANO | All Good Vibes Reserved
     </footer>
   );
 };
