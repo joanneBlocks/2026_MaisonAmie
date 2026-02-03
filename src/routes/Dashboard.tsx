@@ -29,9 +29,10 @@ const Dashboard = () => {
     {
       id: 1,
       title: "Yes, We Did!",
-      content: "Wrapped the Power, Sales & Confidence Workshop and feeling like a magnetic, confident, unstoppable force. Confidence isn’t given—it’s claimed. Sales aren’t luck—they’re strategy + energy. Let’s shine, ladies! #GlowUp #BossBabeEnergy #ConfidenceUnlocked #WomenWhoWin",
-    image: "src/assets/women003.png",
-    timestamp: new Date(),
+      content:
+        "Wrapped the Power, Sales & Confidence Workshop and feeling like a magnetic, confident, unstoppable force. Confidence isn’t given—it’s claimed. Sales aren’t luck—they’re strategy + energy. Let’s shine, ladies! #GlowUp #BossBabeEnergy #ConfidenceUnlocked #WomenWhoWin",
+      image: "src/assets/women003.png",
+      timestamp: new Date(),
     },
     {
       id: 2,
@@ -59,9 +60,7 @@ const Dashboard = () => {
     const file = e.target.files?.[0];
     if (file) {
       const reader = new FileReader();
-      reader.onload = () => {
-        setNewPostImage(reader.result as string);
-      };
+      reader.onload = () => setNewPostImage(reader.result as string);
       reader.readAsDataURL(file);
     }
   };
@@ -87,7 +86,7 @@ const Dashboard = () => {
   const [personalActivities, setPersonalActivities] = useState<Activity[]>([]);
   const [activityTitle, setActivityTitle] = useState("");
   const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
-  const [editId, setEditId] = useState<number | null>(null);
+  const [personalEditId, setPersonalEditId] = useState<number | null>(null);
 
   // ----------------- Global Calendar -----------------
   const [globalActivities, setGlobalActivities] = useState<Activity[]>([
@@ -98,29 +97,23 @@ const Dashboard = () => {
 
   // ----------------- Session Check -----------------
   useEffect(() => {
-    if (!session) {
-      setError("Cute screen. Log in to see the good stuff.");
-    } else {
-      setError(null);
-    }
+    if (!session) setError("Cute screen. Log in to see the good stuff.");
+    else setError(null);
   }, [session]);
 
-
-
-
   // ----------------- Personal Calendar Functions -----------------
-  const saveActivity = () => {
+  const savePersonalActivity = () => {
     if (!activityTitle || !selectedDate || !session) return;
 
-    if (editId !== null) {
+    if (personalEditId !== null) {
       setPersonalActivities(
         personalActivities.map((act) =>
-          act.id === editId
+          act.id === personalEditId
             ? { ...act, title: activityTitle, date: selectedDate }
             : act
         )
       );
-      setEditId(null);
+      setPersonalEditId(null);
     } else {
       setPersonalActivities([
         ...personalActivities,
@@ -132,18 +125,15 @@ const Dashboard = () => {
     setSelectedDate(new Date());
   };
 
+  const editPersonalActivity = (act: Activity) => {
+    setPersonalEditId(act.id);
+    setActivityTitle(act.title);
+    setSelectedDate(act.date);
+  };
+
   const deletePersonalActivity = (id: number) => {
     setPersonalActivities(personalActivities.filter((a) => a.id !== id));
   };
-
-  const editPersonalActivity = (act: Activity) => {
-    setEditId(act.id);
-    setActivityTitle(act.title);
-    setSelectedDate(act.date);
-  }; 
-
-
-
 
   // ----------------- Global Calendar Functions -----------------
   const joinGlobalActivity = (act: Activity) => {
@@ -161,21 +151,8 @@ const Dashboard = () => {
   };
 
   const editGlobalActivity = (act: Activity) => {
-    setEditId(act.id);
     setActivityTitle(act.title);
     setSelectedDate(act.date);
-  };
-
-  const updateGlobalActivity = () => {
-    if (editId === null || !selectedDate || !activityTitle) return;
-    setGlobalActivities(
-      globalActivities.map((act) =>
-        act.id === editId ? { ...act, title: activityTitle, date: selectedDate } : act
-      )
-    );
-    setEditId(null);
-    setActivityTitle("");
-    setSelectedDate(new Date());
   };
 
   const deleteGlobalActivity = (act: Activity) => {
@@ -187,12 +164,13 @@ const Dashboard = () => {
     setGlobalActivities(globalActivities.filter((a) => a.id !== act.id));
   };
 
+  // ----------------- JSX -----------------
   return (
     <>
       <Header />
       <div className="flex-grow overflow-auto px-6 py-10" style={{ backgroundColor: "#fad3d7" }}>
         <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
-          
+
           {/* Profile Sidebar */}
           <div className="rounded-3xl shadow-lg p-8 text-center" style={{ backgroundColor: "#ffffff", border: "2px solid #d1898f" }}>
             <div className="w-24 h-24 mx-auto rounded-full overflow-hidden" style={{ backgroundColor: "#fad3d7" }}>
@@ -227,11 +205,9 @@ const Dashboard = () => {
               PLATINUM
             </button>
 
-            {/* ✅ TODO LIST */}
             <div className="-ml-4">
               <TodoList />
             </div>
-
           </div>
 
           {/* Feed + Calendars */}
@@ -243,38 +219,60 @@ const Dashboard = () => {
               <input type="text" placeholder="Title" value={newPostTitle} onChange={(e) => setNewPostTitle(e.target.value)} className="border border-[#d1898f] rounded px-2 py-1 w-full mb-2" />
               <textarea placeholder="What's on your mind?" value={newPostContent} onChange={(e) => setNewPostContent(e.target.value)} className="border border-[#d1898f] rounded px-2 py-1 w-full mb-2" />
               <div className="mb-2 flex items-center gap-2">
-                <label
-                  htmlFor="postImage"
-                  className="cursor-pointer bg-[#d1898f] text-white px-4 py-2 rounded inline-block"
-                >
-                  Upload Image
-                </label>
-                <input
-                  type="file"
-                  id="postImage"
-                  accept="image/*"
-                  onChange={handleImageUpload}
-                  className="hidden"
-                  />
-                {newPostImage && (
-                  <img src={newPostImage} alt="Preview" className="w-32 h-32 object-cover mt-2 rounded" />
-                )}
-                         
-                <button onClick={addPost} className="bg-[#d1898f] text-white px-4 py-2 rounded">Post</button>              
-
-              </div> 
+                <label htmlFor="postImage" className="cursor-pointer bg-[#d1898f] text-white px-4 py-2 rounded inline-block">Upload Image</label>
+                <input type="file" id="postImage" accept="image/*" onChange={handleImageUpload} className="hidden" />
+                {newPostImage && <img src={newPostImage} alt="Preview" className="w-32 h-32 object-cover mt-2 rounded" />}
+                <button onClick={addPost} className="bg-[#d1898f] text-white px-4 py-2 rounded">Post</button>
+              </div>
             </div>
 
             {/* Personal Posts */}
-            <div>
+            <div className="space-y-4">
               {posts.map((post) => (
-                <div key={post.id} className="rounded-3xl shadow-lg p-6 mb-4 bg-white border-2 border-[#d1898f]">
+                <div key={post.id} className="rounded-3xl shadow-lg p-6 bg-white border-2 border-[#d1898f]">
                   <h3 className="font-bold text-black">{post.title}</h3>
                   <p className="text-xs text-gray-500">{post.timestamp.toLocaleDateString()}</p>
                   {post.image && <img src={post.image} alt="Post Image" className="w-full max-h-64 object-cover rounded my-2" />}
                   <p className="mt-2 text-gray-700">{post.content}</p>
                 </div>
               ))}
+            </div>
+
+            {/* Personal Calendar */}
+            <div className="rounded-3xl shadow-lg p-6 bg-white border-2 border-pink-300">
+              <h3 className="font-bold text-black mb-4">My Personal Calendar</h3>
+              <div className="flex gap-2 mb-4 flex-wrap">
+                <input
+                  type="text"
+                  placeholder="Activity title"
+                  value={activityTitle}
+                  onChange={(e) => setActivityTitle(e.target.value)}
+                  className="border rounded px-2 py-1 flex-1"
+                />
+                <DatePicker
+                  selected={selectedDate}
+                  onChange={(date: Date | null) => setSelectedDate(date)}
+                  className="border rounded px-2 py-1"
+                />
+                <button
+                  onClick={savePersonalActivity}
+                  className="bg-[#d1898f] text-white px-4 py-1 rounded"
+                >
+                  {personalEditId !== null ? "Update" : "Add"}
+                </button>
+              </div>
+              <ul>
+                {personalActivities.map((act) => (
+                  <li key={act.id} className="flex justify-between items-center mb-2 p-2 bg-gray-50 rounded shadow">
+                    <span>{act.title} — {act.date.toLocaleDateString()}</span>
+                    <div className="flex gap-2">
+                      <button onClick={() => editPersonalActivity(act)} className="text-blue-500 font-bold">✏️</button>
+                      <button onClick={() => deletePersonalActivity(act.id)} className="text-red-500 font-bold">❌</button>
+                      <button onClick={() => pushToGlobal(act)} className="text-green-500 px-2 py-1 rounded">🚀</button>
+                    </div>
+                  </li>
+                ))}
+              </ul>
             </div>
 
             {/* Global Calendar */}
@@ -288,32 +286,10 @@ const Dashboard = () => {
                       <button onClick={() => joinGlobalActivity(act)} className="bg-[#d1898f] text-white px-3 py-1 rounded">Join</button>
                       {session?.user?.email === act.creator && (
                         <>
-                          <button onClick={() => editGlobalActivity(act)} className="text-blue-500 font-bold">✏️</button>
+                          <button onClick={() => editGlobalActivity(act)} className="text-blue-500 font-bold text-2xl">⿻</button>
                           <button onClick={() => deleteGlobalActivity(act)} className="text-red-500 font-bold">❌</button>
                         </>
                       )}
-                    </div>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Personal Calendar */}
-            <div className="rounded-3xl shadow-lg p-6 bg-white border-2 border-pink-300">
-              <h3 className="font-bold text-black mb-4">My Personal Calendar</h3>
-              <div className="flex gap-2 mb-4 flex-wrap">
-                <input type="text" placeholder="Activity title" value={activityTitle} onChange={(e) => setActivityTitle(e.target.value)} className="border rounded px-2 py-1 flex-1" />
-                <DatePicker selected={selectedDate} onChange={(date: Date | null) => setSelectedDate(date)} className="border rounded px-2 py-1" />
-                <button onClick={editId !== null ? updateGlobalActivity : saveActivity} className="bg-[#d1898f] text-white px-4 py-1 rounded">{editId !== null ? "Update" : "Add"}</button>
-              </div>
-              <ul>
-                {personalActivities.map((act) => (
-                  <li key={act.id} className="flex justify-between items-center mb-2 p-2 bg-gray-50 rounded shadow">
-                    <span>{act.title} — {act.date.toLocaleDateString()}</span>
-                    <div className="flex gap-2">
-                      <button onClick={() => editPersonalActivity(act)} className="text-blue-500 font-bold">✏️</button>
-                      <button onClick={() => deletePersonalActivity(act.id)} className="text-red-500 font-bold">❌</button>
-                      <button onClick={() => pushToGlobal(act)} className="text-green-500 px-2 py-1 rounded">🚀</button>
                     </div>
                   </li>
                 ))}
@@ -330,4 +306,3 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
-
