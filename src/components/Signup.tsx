@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { UserAuth } from "../context/AuthContext";
 import Header from "../components/Header";
+import Footer from "../components/Footer";
 
 const Signup = () => {
   const [email, setEmail] = useState("");
@@ -126,14 +127,16 @@ const Signup = () => {
             >
               {loading ? "Signing up..." : "Sign Up"}
             </button>
-
+              
             {/* Error */}
             {error && (
               <p className="text-red-600 text-center text-sm">{error}</p>
             )}
           </form>
+          
         </div>
       </div>
+      <Footer></Footer>
     </>
   );
 };
