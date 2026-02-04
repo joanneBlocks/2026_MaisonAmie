@@ -31,7 +31,7 @@ const Dashboard = () => {
       title: "Yes, We Did!",
       content:
         "Wrapped the Power, Sales & Confidence Workshop and feeling like a magnetic, confident, unstoppable force. Confidence isn’t given—it’s claimed. Sales aren’t luck—they’re strategy + energy. Let’s shine, ladies! #GlowUp #BossBabeEnergy #ConfidenceUnlocked #WomenWhoWin",
-      image: "src/assets/women003.png",
+      image: "/women003copy.png",
       timestamp: new Date(),
     },
     {
@@ -39,7 +39,7 @@ const Dashboard = () => {
       title: "The Glow-Up Your Social Life Needed",
       content:
         "More laughter. Better plans. Less “we should hang out sometime.” Just meaningful moments and women who show up.",
-      image: "src/assets/women004.png",
+      image: "/women004copy.png",
       timestamp: new Date(new Date().setDate(new Date().getDate() - 2)),
     },
     {
@@ -47,7 +47,7 @@ const Dashboard = () => {
       title: "You Don’t Have to Do Life Alone",
       content:
         "Doing life alone is overrated. We’re here for shared wins, real connections, and women who understand the assignment.",
-      image: "src/assets/women001.png",
+      image: "/women001copy.png",
       timestamp: new Date(new Date().setDate(new Date().getDate() - 5)),
     },
   ]);
@@ -174,7 +174,7 @@ const Dashboard = () => {
           {/* Profile Sidebar */}
           <div className="rounded-3xl shadow-lg p-8 text-center" style={{ backgroundColor: "#ffffff", border: "2px solid #d1898f" }}>
             <div className="w-24 h-24 mx-auto rounded-full overflow-hidden" style={{ backgroundColor: "#fad3d7" }}>
-              <img src="src/assets/member001.png" alt="👩🏻" className="w-full h-full object-cover" />
+              <img src="/member001copy.png" alt="👩🏻" className="w-full h-full object-cover" />
             </div>
             <h2 className="mt-4 font-bold text-lg text-black">{session?.user?.email || "Guest"}</h2>
             <p className="text-sm text-gray-500 mt-2">Glow Hard or Go Home</p>

@@ -32,7 +32,7 @@ const Header = ({ showSignOut = true }: HeaderProps) => {
     >
       <h1 style={{ fontSize: "1.5rem", fontWeight: "bold" }}>
         <img
-          src="src/assets/MaisonAmieLogoWhite2.png"
+          src="/MaisonAmieLogoWhite.png"
           alt="Maison Amie"
           width="90px"
         />
