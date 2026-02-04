@@ -24,7 +24,7 @@ const Dashboard = () => {
   const { session } = UserAuth();
   const [error, setError] = useState<string | null>(null);
 
-  // ----------------- Posts -----------------
+  // Posts 
   const [posts, setPosts] = useState<Post[]>([
     {
       id: 1,
@@ -82,26 +82,26 @@ const Dashboard = () => {
     setNewPostImage(null);
   };
 
-  // ----------------- Personal Calendar -----------------
+  // Personal Calendar 
   const [personalActivities, setPersonalActivities] = useState<Activity[]>([]);
   const [activityTitle, setActivityTitle] = useState("");
   const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
   const [personalEditId, setPersonalEditId] = useState<number | null>(null);
 
-  // ----------------- Global Calendar -----------------
+  // Global Calendar
   const [globalActivities, setGlobalActivities] = useState<Activity[]>([
     { id: 1, title: "RSVP Like You Mean It", date: new Date("2026-02-05"), creator: "HER Empire" },
     { id: 2, title: "Step Outside the Everyday", date: new Date("2026-03-07"), creator: "The Velvet Circle" },
     { id: 3, title: "If You Know, You Know", date: new Date("2026-04-10"), creator: "NOIRÈ Femme" },
   ]);
 
-  // ----------------- Session Check -----------------
+  // Session Check 
   useEffect(() => {
     if (!session) setError("Cute screen. Log in to see the good stuff.");
     else setError(null);
   }, [session]);
 
-  // ----------------- Personal Calendar Functions -----------------
+  // Personal Calendar Functions 
   const savePersonalActivity = () => {
     if (!activityTitle || !selectedDate || !session) return;
 
@@ -135,7 +135,7 @@ const Dashboard = () => {
     setPersonalActivities(personalActivities.filter((a) => a.id !== id));
   };
 
-  // ----------------- Global Calendar Functions -----------------
+  // Global Calendar Functions 
   const joinGlobalActivity = (act: Activity) => {
     if (!session) return;
     if (personalActivities.some((a) => a.title === act.title && a.date.getTime() === act.date.getTime())) {
@@ -164,7 +164,7 @@ const Dashboard = () => {
     setGlobalActivities(globalActivities.filter((a) => a.id !== act.id));
   };
 
-  // ----------------- JSX -----------------
+  // JSX
   return (
     <>
       <Header />
